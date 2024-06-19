@@ -1,0 +1,34 @@
+from collections import deque
+
+def update_matrix(mat):
+    if not mat:
+        return mat
+
+    m, n = len(mat), len(mat[0])
+    queue = deque()
+
+    # Add all 0 cells to the queue and mark others as -1
+    for i in range(m):
+        for j in range(n):
+            if mat[i][j] == 0:
+                queue.append((i, j))
+            else:
+                mat[i][j] = -1
+
+    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    while queue:
+        x, y = queue.popleft()
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < m and 0 <= ny < n and mat[nx][ny] == -1:
+                mat[nx][ny] = mat[x][y] + 1
+                queue.append((nx, ny))
+
+    return mat
+
+# Example usage
+mat1 = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+print(update_matrix(mat1))  # Output: [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+
+mat2 = [[0, 0, 0], [0, 1, 0], [1, 1, 1]]
+print(update_matrix(mat2))  # Output: [[0, 0, 0], [0, 1, 0], [1, 2, 1]]
