@@ -1,0 +1,12 @@
+def min_length_after_operations(nums):
+    return len(nums) % 2
+
+# Example usage:
+nums = [1, 2, 3, 4]
+print(min_length_after_operations(nums))  # Output: 0
+
+nums = [1, 2, 3]
+print(min_length_after_operations(nums))  # Output: 1
+
+nums = [1, 2, 3, 4, 5]
+print(min_length_after_operations(nums))  # Output: 1
