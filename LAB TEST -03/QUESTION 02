@@ -1,0 +1,22 @@
+function dijkstra(graph, source):
+    n = length of graph
+    distances = array of size n, initialized to infinity
+    distances[source] = 0
+    priority_queue = min-heap
+    push (0, source) into priority_queue
+    processed = empty set
+
+    while priority_queue is not empty:
+        (current_distance, u) = extract-min(priority_queue)
+        if u in processed:
+            continue
+        processed.add(u)
+
+        for each neighbor v of u:
+            if graph[u][v] != infinity and v not in processed:
+                new_distance = current_distance + graph[u][v]
+                if new_distance < distances[v]:
+                    distances[v] = new_distance
+                    push (new_distance, v) into priority_queue
+
+    return distances
